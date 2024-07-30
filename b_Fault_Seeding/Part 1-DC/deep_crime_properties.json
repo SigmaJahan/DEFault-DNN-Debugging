@@ -1,0 +1,9 @@
+{
+    "subject_name": "deepmultifixb1",
+    "subject_path": "test_models\\b1.py",
+    "root": "C:\\Users\\sigma\\Documents\\GitHub\\DeepMultiFix\\deepcrime_sigma",
+    "mutations": [
+        "change_loss_function"
+    ],
+    "mode": "test"
+}

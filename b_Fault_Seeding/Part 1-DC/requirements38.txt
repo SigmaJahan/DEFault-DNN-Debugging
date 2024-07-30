@@ -1,0 +1,13 @@
+# numpy
+# tensorflow
+# Keras
+# matplotlib
+# progressbar
+# scikit-learn
+# termcolor
+# h5py
+# pandas
+# statsmodels
+# networkx
+# patsy
+# scipy
