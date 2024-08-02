@@ -3,11 +3,13 @@ import pandas as pd
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.mixture import GaussianMixture
-from Fault_Dynamic_Activation import best_clf as best_clf_activation
-from Fault_Dynamic_Layer import best_clf as best_clf_layer
-from Fault_Dynamic_Hyperparameter import best_clf as best_clf_hyperparameter
-from Fault_Dynamic_Loss import best_clf as best_clf_loss
-from Fault_Dynamic_Optimization import best_clf as best_clf_optimization
+from Fault_Diagnosis_Activation import best_clf as best_clf_activation
+from Fault_Diagnosis_Layer import best_clf as best_clf_layer
+from Fault_Diagnosis_Hyperparameter import best_clf as best_clf_hyperparameter
+from Fault_Diagnosis_Loss import best_clf as best_clf_loss
+from Fault_Diagnosis_Optimization import best_clf as best_clf_optimization
+from Fault_Diagnosis_Regularizer import best_clf as best_clf_regularizer
+from Fault_Diagnosis_Weights import best_clf as best_clf_weights
 
 def convert_tensor_to_bool(tensor_str):
     if isinstance(tensor_str, str):
@@ -126,7 +128,9 @@ classifiers = [
     (best_clf_layer, 'Layer'),
     (best_clf_hyperparameter, 'Hyperparameter'),
     (best_clf_loss, 'Loss'),
-    (best_clf_optimization, 'Optimization')
+    (best_clf_optimization, 'Optimization'),
+    (best_clf_regularizer, 'Regularizer'),
+    (best_clf_regularizer, 'Weights')
 ]
 
 test_file_path = "D:\\ICSE_Dataset\\test"
