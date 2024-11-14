@@ -16,7 +16,8 @@ from sklearn.ensemble import RandomForestClassifier
 import matplotlib.pyplot as plt
 from sklearn.inspection import permutation_importance, PartialDependenceDisplay
 
-df = pd.read_csv('..\\static_features_df.csv')
+#static_features_path = input("Enter the path to the static_features_df.csv file: ")
+df = pd.read_csv('C:\\Users\\sigma\\Desktop\\ASE_2024\\d_DEFault\\C_RootCauseAnalysis\\static_features_df.csv')
 target_column = 'Buggy'
 X = df.drop(columns=[target_column])
 y = df[target_column]
