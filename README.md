@@ -9,7 +9,7 @@ This repository contains the code and data to replicate the experiments in the p
 - `b_Fault_Seeding`: Contains the code to inject faults into DNN models using an extended version of DeepCrime.
 
   - `Part 1-DC`: Original DeepCrime code.
-  - `Part 2-EFI`: Our extensions to support more fault types, including convolutional and recurrent models.
+  - `Part 2-EFI`: Our extensions support more fault types, including convolutional and recurrent models.
 
 - `c_Feature_Extraction`: Code to extract static and dynamic features from DNN models.
 
@@ -35,16 +35,15 @@ This repository contains the code and data to replicate the experiments in the p
 
 - `h_CohenKappaAnalysis`: Scripts and results for validating dataset consistency using Cohen's kappa.
 
-- `i_CaseStudy`: Additional case studies and extracted features for testing DEFault on specific DNN programs (e.g., PixelCNN).
+- `i_CaseStudy`: Additional case studies for testing DEFault on specific DNN programs from real-world applications (e.g., PixelCNN) - https://github.com/sarus-tech/tf2-published-models.
 
 ### Usage
 
-To replicate the experiments:
+To run the experiments:
 
 1. **Data Collection and Preprocessing**
-   - Run the Jupyter notebook in `c_Feature_Extraction/Dynamic` to extract dynamic features and generate the dataset in `g_Dataset/labeled_dynamic_feature_first_level`.
-   - Run `c_Feature_Extraction/Static/Static_Feature_Extraction.py` to extract static features.
-   - Concatenate static features to the dataset in `g_Dataset/labeled_dynamic_feature_second_level`.
+   - Use the custom callback from `c_Feature_Extraction/Dynamic` to extract dynamic features from the DNN programs during training and collect the extracted features as dynamic features.
+   - Use `c_Feature_Extraction/Static/Static_Feature_Extraction.py` to extract static features from the DNN programs.
 
 2. **Model Training**
    - Train the Level 1 fault detection model using `d_DEFault/A_Detection/Fault_Detection.py`.
@@ -57,12 +56,13 @@ To replicate the experiments:
    - Generate classification reports, confusion matrices, and other evaluation metrics.
 
 4. **Case Studies**
-   - Test DEFault on case studies (e.g., PixelCNN) using scripts in `i_CaseStudy`.
-   - Analyze dynamic and static features extracted for case studies.
+   - The actual DNN program for the case studies (e.g., PixelCNN) is in `i_CaseStudy`.
+   - Extract the dynamic and static features in the same way for the DNN program of the case study.
+   - Go to `d_DEFault/d_CaseStudyTest/..` and run the scripts to detect and diagnose faults in the DNN program
 
 ### Requirements
 
-See `requirements.txt` for Python library requirements.
+See `requirements.txt` for Python library requirements. All experiments were conducted using Compute Canada's GPU infrastructure due to the high computational demands. Results may vary slightly due to hardware and environmental differences.
 
 ### Licensing Information
 
