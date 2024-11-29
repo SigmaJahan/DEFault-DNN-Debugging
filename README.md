@@ -6,7 +6,7 @@ This repository contains the code and data to replicate the experiments in the p
 
 - `a_Data_Collection`: Contains the collected and filtered StackOverflow posts used to create the dataset.
 
-- `b_Fault_Seeding`: Contains the code to inject faults into DNN models using an extended version of DeepCrime.
+- `b_Fault_Seeding`: Contains the code to inject faults into DNN models using an extended version of DeepCrime. We collected 60 Stack Overflow (SO) posts and used their correct versions as the original deep neural network (DNN) programs. These programs served as the baseline for injecting faults. Here is the link to access 60 original DNN programs: https://bit.ly/3CQPozK
 
   - `Part 1-DC`: Original DeepCrime code.
   - `Part 2-EFI`: Our extensions support more fault types, including convolutional and recurrent models.
@@ -51,7 +51,7 @@ To run the experiments:
    - Train root cause analysis models using `d_DEFault/C_RootCauseAnalysis/RCA-*.py`.
 
 3. **Model Evaluation**
-   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults.
+   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults. Real-world DNN programs are collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
    - Use the test data in `e_Evaluation` for evaluation.
    - Generate classification reports, confusion matrices, and other evaluation metrics.
 
