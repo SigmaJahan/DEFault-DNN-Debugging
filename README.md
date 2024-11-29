@@ -22,7 +22,7 @@ This repository contains the code and data to replicate the experiments in the p
   - `B_Categorization`: Scripts for fault categorization into subtypes (e.g., activation, layer, loss).
   - `C_RootCauseAnalysis`: Explainability scripts for root cause analysis.
 
-- `e_Evaluation`: Code to evaluate DEFault on real-world and seeded faults. Includes benchmark data and analysis.
+- `e_Evaluation`: Code to evaluate DEFault on real-world and seeded faults. Includes evaluation results of DEFault and the baseline techniques on real-world DNN programs collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
 
 - `f_Figures`: Figures generated for the paper (e.g., fault hierarchy, dataset distributions).
 
