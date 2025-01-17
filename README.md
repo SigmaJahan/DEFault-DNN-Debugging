@@ -1,69 +1,143 @@
-## Replication Package for DEFault
+Here's a well-structured and formatted `README.md` file for your repository:
 
-This repository contains the code and data to replicate the experiments in the paper "Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification".
+---
 
-### Contents
+# **Replication Package for DEFault**
 
-- `a_Data_Collection`: Contains the collected and filtered StackOverflow posts used to create the dataset.
+This repository contains the code and data to replicate the experiments from the paper:  
+**"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
-- `b_Fault_Seeding`: Contains the code to inject faults into DNN models using an extended version of DeepCrime. We collected 60 Stack Overflow (SO) posts and used their correct versions as the original deep neural network (DNN) programs. These programs served as the baseline for injecting faults. Here is the link to access 60 original DNN programs: https://bit.ly/3CQPozK
+DEFault combines static and dynamic analyses to detect, categorize, and diagnose faults in Deep Neural Network (DNN) programs, addressing limitations in existing techniques.
 
-  - `Part 1-DC`: Original DeepCrime code.
-  - `Part 2-EFI`: Our extensions support more fault types, including convolutional and recurrent models.
+---
 
-- `c_Feature_Extraction`: Code to extract static and dynamic features from DNN models.
+## **Table of Contents**
+1. [Contents](#contents)
+2. [Requirements](#requirements)
+3. [Usage](#usage)
+   - [1. Data Collection](#1-data-collection)
+   - [2. Feature Extraction](#2-feature-extraction)
+   - [3. Model Training](#3-model-training)
+   - [4. Model Evaluation](#4-model-evaluation)
+   - [5. Case Studies](#5-case-studies)
+4. [Licensing Information](#licensing-information)
 
-  - `Dynamic`: Scripts for extracting runtime (dynamic) features.
-  - `Static`: Scripts for extracting model structure (static) features.
+---
 
-- `d_DEFault`: Implementation of the DEFault approach, including hierarchical fault detection, diagnosis, and explainability models.
+## **Contents**
+### Repository Structure
+- **`a_Data_Collection/`**: Scripts to collect and process StackOverflow posts for creating the dataset.  
+- **`b_Fault_Seeding/`**: Scripts to inject faults into DNN programs using the extended DeepCrime framework:
+  - **Part 1-DC**: Original DeepCrime code.
+  - **Part 2-EFI**: Extended framework for more fault types, including convolutional and recurrent models.
+- **`c_Feature_Extraction/`**: Scripts for extracting features from DNN programs:
+  - **Dynamic**: Runtime feature extraction.
+  - **Static**: Structural feature extraction.
+- **`d_DEFault/`**: Implementation of DEFault:
+  - **A_Detection**: Fault detection scripts.
+  - **B_Categorization**: Fault categorization scripts.
+  - **C_RootCauseAnalysis**: Root cause analysis scripts.
+- **`e_Evaluation/`**: Scripts to evaluate DEFault on real-world and seeded faults.
+- **`f_Figures/`**: Figures used in the paper.
+- **`g_Dataset/`**: Labeled datasets for training and evaluation:
+  - **Dynamic Features**: For fault detection and categorization.
+  - **Static Features**: For root cause analysis.
+- **`h_CohenKappaAnalysis/`**: Scripts for dataset consistency validation using Cohen's Kappa.
+- **`i_CaseStudy/`**: Scripts for case studies on real-world models (e.g., PixelCNN).
 
-  - `A_Detection`: Scripts for fault detection.
-  - `B_Categorization`: Scripts for fault categorization into subtypes (e.g., activation, layer, loss).
-  - `C_RootCauseAnalysis`: Explainability scripts for root cause analysis.
+---
 
-- `e_Evaluation`: Code to evaluate DEFault on real-world and seeded faults. Includes evaluation results of DEFault and the baseline techniques on real-world DNN programs collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
+## **Requirements**
+### **Hardware**
+- **Minimum Requirements**:
+  - CPU: 4 cores
+  - RAM: 8 GB
+  - Disk: 10 GB
+- **Recommended**:
+  - GPU: NVIDIA with CUDA support for faster execution.
 
-- `f_Figures`: Figures generated for the paper (e.g., fault hierarchy, dataset distributions).
+### **Software**
+- **Python Version**: 3.8 or later  
+- **Dependencies**: Listed in `requirements.txt`. Install using:  
+  ```bash
+  pip install -r requirements.txt
+  ```
 
-- `g_Dataset`: Labeled datasets for training and evaluation of DEFault models.
+---
 
-  - `labeled_dynamic_feature_first_level`: Dynamic features for initial fault detection.
-  - `labeled_dynamic_feature_second_level`: Features categorized by fault types (e.g., layer, activation).
-  - `labeled_dynamic_feature_third_level`: Additional dataset for detailed root cause analysis.
-  - `labeled_static_feature_RCA`: Static features used for root cause analysis.
+## **Usage**
 
-- `h_CohenKappaAnalysis`: Scripts and results for validating dataset consistency using Cohen's kappa.
+### **1. Data Collection**
+1. **Download Original DNN Programs**:
+   - Download the 60 original DNN programs from StackOverflow:
+     [Download Link](https://bit.ly/3CQPozK).
+2. **Inject Faults**:
+   - Use the extended DeepCrime framework to generate a dataset of ~14.5K DNN programs:
+     ```bash
+     cd b_Fault_Seeding
+     python Fault_Seeding_Script.py
+     ```
 
-- `i_CaseStudy`: Additional case studies for testing DEFault on specific DNN programs from real-world applications (e.g., PixelCNN) - https://github.com/sarus-tech/tf2-published-models.
+---
 
-### Usage
+### **2. Feature Extraction**
+1. **Extract Static Features**:
+   ```bash
+   cd c_Feature_Extraction/Static
+   python Static_Feature_Extraction.py
+   ```
+2. **Extract Dynamic Features**:
+   ```bash
+   cd c_Feature_Extraction/Dynamic
+   python Dynamic_Feature_Extraction.py
+   ```
 
-To run the experiments:
+---
 
-1. **Data Collection and Preprocessing**
-   - Use the custom callback from `c_Feature_Extraction/Dynamic` to extract dynamic features from the DNN programs during training and collect the extracted features as dynamic features.
-   - Use `c_Feature_Extraction/Static/Static_Feature_Extraction.py` to extract static features from the DNN programs.
+### **3. Model Training**
+1. Train the Level 1 fault detection model:
+   ```bash
+   cd d_DEFault/A_Detection
+   python Fault_Detection.py
+   ```
+2. Train the Level 2 fault categorization models:
+   ```bash
+   cd d_DEFault/B_Categorization
+   python Fault_Categorization.py
+   ```
+3. Train the Level 3 root cause analysis models:
+   ```bash
+   cd d_DEFault/C_RootCauseAnalysis
+   python RCA_Analysis.py
+   ```
 
-2. **Model Training**
-   - Train the Level 1 fault detection model using `d_DEFault/A_Detection/Fault_Detection.py`.
-   - Train the Level 2 fault categorization models using scripts in `d_DEFault/B_Categorization`.
-   - Train root cause analysis models using `d_DEFault/C_RootCauseAnalysis/RCA-*.py`.
+---
 
-3. **Model Evaluation**
-   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults. Real-world DNN programs are collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
-   - Use the test data in `e_Evaluation` for evaluation.
-   - Generate classification reports, confusion matrices, and other evaluation metrics.
+### **4. Model Evaluation**
+1. Evaluate DEFault on the dataset and real-world DNN programs:
+   ```bash
+   cd e_Evaluation
+   python Fault_Evaluation_Detection_Diagnosis.py
+   ```
+2. **Outputs**:
+   - Metrics (accuracy, precision, recall, F1-scores).
+   - Confusion matrices and classification reports.
 
-4. **Case Studies**
-   - The actual DNN program for the case studies (e.g., PixelCNN) is in `i_CaseStudy`.
-   - Extract the dynamic and static features in the same way for the DNN program of the case study.
-   - Go to `d_DEFault/d_CaseStudyTest/..` and run the scripts to detect and diagnose faults in the DNN program
+---
 
-### Requirements
+### **5. Case Studies**
+Analyze faults in real-world models like PixelCNN:
+1. Extract features:
+   ```bash
+   cd i_CaseStudy
+   python Feature_Extraction_CaseStudy.py
+   ```
+2. Run analysis:
+   ```bash
+   python PixelCNN_Analysis.py
+   ```
 
-See `requirements.txt` for Python library requirements. All experiments were conducted using Compute Canada's GPU infrastructure due to the high computational demands. Results may vary slightly due to hardware and environmental differences.
+---
 
-### Licensing Information
-
-This project is licensed under the MIT License, a permissive open-source license that allows others to use, modify, and distribute the project's code with very few restrictions. This fosters collaboration, encourages knowledge sharing, and supports the adaptation of the code for new research.
+## **Licensing Information**
+This project is licensed under the **MIT License**. You are free to use, modify, and distribute the code with minimal restrictions, fostering collaboration and knowledge sharing.
