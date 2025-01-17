@@ -1,7 +1,3 @@
-Here's a well-structured and formatted `README.md` file for your repository:
-
----
-
 # **Replication Package for DEFault**
 
 This repository contains the code and data to replicate the experiments from the paper:  
