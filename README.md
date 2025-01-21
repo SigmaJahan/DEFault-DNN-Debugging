@@ -73,7 +73,9 @@ Note: While the artifact provides general instructions for running experiments, 
 
 ---
 
-## **Usage**
+**Usage-(Not Recommended)**
+
+Note: This is the usage of how to run the whole experiments on the entire dataset. This is not recommended due to computational overhead. 
 
 ### **1. Data Collection**
 1. **Download Original DNN Programs**:
@@ -88,7 +90,6 @@ Note: While the artifact provides general instructions for running experiments, 
 
 ---
 
-### Usage (for the whole experiments on entire dataset - Not reocommended due to computational overhead)
 ### **2. Feature Extraction**
 1. **Extract Static Features**:
    ```bash
@@ -122,10 +123,6 @@ Note: While the artifact provides general instructions for running experiments, 
 
 ---
 
-3. **Model Evaluation**
-   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults. Real-world DNN programs for evaluation are collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
-   - Use the test data in `e_Evaluation` for evaluation.
-   - Generate classification reports, confusion matrices, and other evaluation metrics.
 ### **4. Model Evaluation**
 1. Evaluate DEFault on the dataset and real-world DNN programs:
    ```bash
@@ -138,15 +135,26 @@ Note: While the artifact provides general instructions for running experiments, 
 
 ---
 
+### **5. Case Studies**
+Analyze faults in real-world models like PixelCNN:
+1. Extract features:
+   ```bash
+   cd i_CaseStudy
+   python Feature_Extraction_CaseStudy.py
+   ```
+2. Run analysis:
+   ```bash
+   python PixelCNN_Analysis.py
+   ```
+---
 
-### Running DEFault on a sample model (Recommended)
+**Usage-(Recommended)**
+
+Note: Running DEFault on a sample DNN program. It is recommended because by following the provided instructions inside the directory, users can validate the functionality of the proposed approach with minimal computational overhead.
 
 - `0_Artifact_Testing`: The 0_Artifact_Testing directory is designed to facilitate the reproduction of the case study results presented in the research paper. Due to the computational and time-intensive nature of processing the entire dataset, this directory focuses on verifying functionality and reusability using selected case studies.
 
-This directory contains all necessary artifacts to reproduce the case study results, including:
-Data, Pre-trained models, Requirements, Evaluation Script and Readme files with step-by-step instructions for reproducing results.
-
-By following the provided instructions, users can validate the functionality of the proposed approach with minimal computational overhead.
+This directory contains all necessary artifacts to reproduce the case study results, including Data, Pre-trained models, Requirements, Evaluation Script, and Readme files with step-by-step instructions for reproducing results.
 
 ### Requirements
 ### **5. Case Studies**
