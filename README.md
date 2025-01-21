@@ -2,7 +2,7 @@
 
 This repository contains the code and data to replicate the experiments in the paper "Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification".
 
-### Contents
+### Main Contents
 
 - `a_Data_Collection`: Contains the collected and filtered StackOverflow posts used to create the dataset.
 
@@ -37,7 +37,7 @@ This repository contains the code and data to replicate the experiments in the p
 
 - `i_CaseStudy`: Additional case studies for testing DEFault on specific DNN programs from real-world applications (e.g., PixelCNN) - https://github.com/sarus-tech/tf2-published-models.
 
-### Usage
+### Usage (for the whole experiments on entire dataset - Not reocommended due to computational overhead)
 
 To run the experiments:
 
@@ -51,7 +51,7 @@ To run the experiments:
    - Train root cause analysis models using `d_DEFault/C_RootCauseAnalysis/RCA-*.py`.
 
 3. **Model Evaluation**
-   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults. Real-world DNN programs are collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
+   - Run `e_Evaluation/Fault_Evaluation_Detection_Diagnosis.py` to evaluate the trained models on real-world and seeded faults. Real-world DNN programs for evaluation are collected from DeepFD's work (https://github.com/ArabelaTso/DeepFD). 
    - Use the test data in `e_Evaluation` for evaluation.
    - Generate classification reports, confusion matrices, and other evaluation metrics.
 
@@ -59,6 +59,16 @@ To run the experiments:
    - The actual DNN program for the case studies (e.g., PixelCNN) is in `i_CaseStudy`.
    - Extract the dynamic and static features in the same way for the DNN program of the case study.
    - Go to `d_DEFault/d_CaseStudyTest/..` and run the scripts to detect and diagnose faults in the DNN program
+
+
+### Running DEFault on a sample model (Recommended)
+
+- `0_Artifact_Testing`: The 0_Artifact_Testing directory is designed to facilitate the reproduction of the case study results presented in the research paper. Due to the computational and time-intensive nature of processing the entire dataset, this directory focuses on verifying functionality and reusability using selected case studies.
+
+This directory contains all necessary artifacts to reproduce the case study results, including:
+Data, Pre-trained models, Requirements, Evaluation Script and Readme files with step-by-step instructions for reproducing results.
+
+By following the provided instructions, users can validate the functionality of the proposed approach with minimal computational overhead.
 
 ### Requirements
 
