@@ -3,7 +3,7 @@
 This repository contains the code and data to replicate the experiments from the paper:  
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
-DEFault combines static and dynamic analyses to detect, categorize, and diagnose faults in Deep Neural Network (DNN) programs, addressing limitations in existing techniques.
+The DEFault framework integrates both static and dynamic analyses to detect, categorize, and diagnose faults in Deep Neural Network (DNN) programs, addressing the limitations of existing fault detection techniques. The artifact provides a structured and reproducible pipeline, including data collection, feature extraction, model training, evaluation, and case studies.
 
 ---
 
@@ -51,6 +51,7 @@ DEFault combines static and dynamic analyses to detect, categorize, and diagnose
   - Disk: 10 GB
 - **Recommended**:
   - GPU: NVIDIA with CUDA support for faster execution.
+  - HPC access (e.g., Compute Canada) for large-scale execution
 
 ### **Software**
 - **Python Version**: 3.8 or later  
@@ -58,6 +59,7 @@ DEFault combines static and dynamic analyses to detect, categorize, and diagnose
   ```bash
   pip install -r requirements.txt
   ```
+Note: While the artifact provides general instructions for running experiments, specific configurations for Compute Canada clusters (such as job scheduling, storage management, and resource availability) are not included due to their dependency on institutional access and infrastructure. Users are advised to adapt the provided scripts based on their HPC environment.
 
 ---
 
