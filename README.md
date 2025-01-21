@@ -44,6 +44,15 @@ The DEFault framework integrates both static and dynamic analyses to detect, cat
 ---
 
 ## **Requirements**
+### **Operating System**
+The artifact has been tested and validated on the following operating systems:
+- Ubuntu 20.04 LTS or later
+- CentOS 7+ (for HPC environments such as Compute Canada)
+
+Compatible:
+- Windows 10/11 with Windows Subsystem for Linux (WSL2)
+- macOS Monterey (M1/M2 support requires additional configuration)
+
 ### **Hardware**
 - **Minimum Requirements**:
   - CPU: 4 cores
