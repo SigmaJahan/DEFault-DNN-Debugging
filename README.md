@@ -1,29 +1,37 @@
 # **Replication Package for DEFault**
 
-This repository contains the code and data to replicate the experiments from the paper:  
-**"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
+Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025. 
 
-### Main Contents
-The DEFault framework integrates both static and dynamic analyses to detect, categorize, and diagnose faults in Deep Neural Network (DNN) programs, addressing the limitations of existing fault detection techniques. The artifact provides a structured and reproducible pipeline, including data collection, feature extraction, model training, evaluation, and case studies.
+**"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
 ---
 
 ## **Table of Contents**
 1. [Contents](#contents)
 2. [Requirements](#requirements)
-3. [Usage](#usage)
-   - [1. Data Collection](#1-data-collection)
-   - [2. Feature Extraction](#2-feature-extraction)
-   - [3. Model Training](#3-model-training)
-   - [4. Model Evaluation](#4-model-evaluation)
-   - [5. Case Studies](#5-case-studies)
-4. [Licensing Information](#licensing-information)
+3. [Usage: Whole Dataset vs. Sample Data](#usage-whole-dataset-vs-sample-data)
+    - [1. Data Collection](#1-data-collection)
+    - [2. Feature Extraction](#2-feature-extraction)
+    - [3. Model Training](#3-model-training)
+    - [4. Model Evaluation](#4-model-evaluation)
+    - [5. Case Studies](#5-case-studies)
+4. [Usage: Sample Data](#usage-sample-data)
+    - [1. Data](#data)
+    - [2. Models](#models)
+    - [3. Evaluation Scripts](#evaluation-scripts)
+    - [4. Config](#config)
+    - [5. Requirements](#requirements)
+    - [6. README.md](#readme)
+5. [Quick Start Guide](#quick-start-guide)
+6. [Licensing Information](#licensing-information)
 
 ---
 
 ## **Contents**
+
 ### Repository Structure
-- **`a_Data_Collection/`**: Scripts to collect and process StackOverflow posts for creating the dataset.  
+
+- **`a_Data_Collection/`**: Scripts to collect and process StackOverflow posts for creating the dataset.
 - **`b_Fault_Seeding/`**: Scripts to inject faults into DNN programs using the extended DeepCrime framework:
   - **Part 1-DC**: Original DeepCrime code.
   - **Part 2-EFI**: Extended framework for more fault types, including convolutional and recurrent models.
@@ -31,145 +39,138 @@ The DEFault framework integrates both static and dynamic analyses to detect, cat
   - **Dynamic**: Runtime feature extraction.
   - **Static**: Structural feature extraction.
 - **`d_DEFault/`**: Implementation of DEFault:
-  - **A_Detection**: Fault detection scripts.
-  - **B_Categorization**: Fault categorization scripts.
-  - **C_RootCauseAnalysis**: Root cause analysis scripts.
+  - **A_Detection/**: Fault detection scripts.
+  - **B_Categorization/**: Fault categorization scripts.
+  - **C_RootCauseAnalysis/**: Root cause analysis scripts.
 - **`e_Evaluation/`**: Scripts to evaluate DEFault on real-world and seeded faults.
 - **`f_Figures/`**: Figures used in the paper.
-- **`g_Dataset/`**: Labeled datasets for training and evaluation:
-  - **Dynamic Features**: For fault detection and categorization.
-  - **Static Features**: For root cause analysis.
+- **`g_Dataset/`**: Labeled datasets for training and evaluation.
 - **`h_CohenKappaAnalysis/`**: Scripts for dataset consistency validation using Cohen's Kappa.
 - **`i_CaseStudy/`**: Scripts for case studies on real-world models (e.g., PixelCNN).
 
 ---
 
 ## **Requirements**
+
 ### **Operating System**
-The artifact has been tested and validated on the following operating systems:
+Tested on:
 - Ubuntu 20.04 LTS or later
 - CentOS 7+ (for HPC environments such as Compute Canada)
 
-Compatible:
-- Windows 10/11 with Windows Subsystem for Linux (WSL2)
-- macOS Monterey (M1/M2 support requires additional configuration)
+Compatible with:
+- Windows 10/11 (via Windows Subsystem for Linux - WSL2)
+- macOS Monterey (M1/M2 support may require additional configuration)
 
-### **Hardware**
-- **Minimum Requirements**:
-  - CPU: 4 cores
-  - RAM: 8 GB
-  - Disk: 10 GB
-- **Recommended**:
-  - GPU: NVIDIA with CUDA support for faster execution.
-  - HPC access (e.g., Compute Canada) for large-scale execution
+### **Hardware Requirements**
 
-### **Software**
-- **Python Version**: 3.8 or later  
-- **Dependencies**: Listed in `requirements.txt`. Install using:  
+**Minimum:**
+- CPU: 4 cores
+- RAM: 8 GB
+- Disk: 10 GB
+
+**Recommended:**
+- GPU: NVIDIA with CUDA support
+- HPC access (e.g., Compute Canada) for large-scale execution
+
+### **Software Requirements**
+
+- **Python Version:** 3.8 or later  
+- **Dependencies:** Install via `requirements.txt`:  
   ```bash
   pip install -r requirements.txt
   ```
-Note: While the artifact provides general instructions for running experiments, specific configurations for Compute Canada clusters (such as job scheduling, storage management, and resource availability) are not included due to their dependency on institutional access and infrastructure. Users are advised to adapt the provided scripts based on their HPC environment.
+
+**Recommended:** Create a virtual environment before installation:  
+```bash
+python -m venv default_env
+source default_env/bin/activate   # On macOS/Linux
+default_env\Scripts\activate      # On Windows
+```
 
 ---
 
-**Usage-(Not Recommended)**
+## **Usage: Whole Dataset vs. Sample Data**
 
-Note: This is the usage of how to run the whole experiments on the entire dataset. This is not recommended due to computational overhead. 
+**Important:**  
+- Running the **whole dataset** requires significant computational resources and time.
+- Running the **sample data** is **recommended**, as it provides a quick and effective way to verify the framework's functionality.
+
+---
 
 ### **1. Data Collection**
-1. **Download Original DNN Programs**:
-   - Download the 60 original DNN programs from StackOverflow:
-     [Download Link](https://bit.ly/3CQPozK).
-2. **Inject Faults**:
-   - Use the extended DeepCrime framework to generate a dataset of ~14.5K DNN programs:
-     ```bash
-     cd b_Fault_Seeding
-     python Fault_Seeding_Script.py
-     ```
 
----
+1. **Download Original DNN Programs**:  
+   - Download the 60 original DNN programs from StackOverflow:  
+     [Download Link](https://bit.ly/3CQPozK).
+2. **Inject Faults**:  
+   ```bash
+   cd b_Fault_Seeding
+   python Fault_Seeding_Script.py
+   ```
 
 ### **2. Feature Extraction**
-1. **Extract Static Features**:
-   ```bash
-   cd c_Feature_Extraction/Static
-   python Static_Feature_Extraction.py
-   ```
-2. **Extract Dynamic Features**:
-   ```bash
-   cd c_Feature_Extraction/Dynamic
-   python Dynamic_Feature_Extraction.py
-   ```
 
----
+```bash
+cd c_Feature_Extraction/Static
+python Static_Feature_Extraction.py
+```
+
+```bash
+cd c_Feature_Extraction/Dynamic
+python Dynamic_Feature_Extraction.py
+```
 
 ### **3. Model Training**
-1. Train the Level 1 fault detection model:
-   ```bash
-   cd d_DEFault/A_Detection
-   python Fault_Detection.py
-   ```
-2. Train the Level 2 fault categorization models:
-   ```bash
-   cd d_DEFault/B_Categorization
-   python Fault_Categorization.py
-   ```
-3. Train the Level 3 root cause analysis models:
-   ```bash
-   cd d_DEFault/C_RootCauseAnalysis
-   python RCA_Analysis.py
-   ```
 
----
+```bash
+cd d_DEFault/A_Detection
+python Fault_Detection.py
+```
 
 ### **4. Model Evaluation**
-1. Evaluate DEFault on the dataset and real-world DNN programs:
-   ```bash
-   cd e_Evaluation
-   python Fault_Evaluation_Detection_Diagnosis.py
-   ```
-2. **Outputs**:
-   - Metrics (accuracy, precision, recall, F1-scores).
-   - Confusion matrices and classification reports.
+
+```bash
+cd e_Evaluation
+python Fault_Evaluation_Detection_Diagnosis.py
+```
+
+### **5. Case Studies**
+
+```bash
+cd i_CaseStudy
+python Feature_Extraction_CaseStudy.py
+python PixelCNN_Analysis.py
+```
 
 ---
 
-### **5. Case Studies**
-Analyze faults in real-world models like PixelCNN:
-1. Extract features:
-   ```bash
-   cd i_CaseStudy
-   python Feature_Extraction_CaseStudy.py
-   ```
-2. Run analysis:
-   ```bash
-   python PixelCNN_Analysis.py
-   ```
+## **Usage: Sample Data**
+
+The `0_Artifact_Testing` directory provides all necessary artifacts to reproduce case study results with minimal computational overhead. It includes:
+
+- **Data**
+- **Pre-trained models**
+- **Evaluation scripts**
+- **Configuration files**
+- **Requirements**
+- **README instructions**
+
 ---
 
-**Usage-(Recommended)**
+## **Quick Start Guide**
 
-Note: Running DEFault on a sample DNN program. It is recommended because by following the provided instructions inside the directory, users can validate the functionality of the proposed approach with minimal computational overhead.
+```bash
+# Run a sample evaluation
+cd 0_Artifact_Testing/scripts
+python testForCaseStudy_RCA.py
 
-- `0_Artifact_Testing`: The 0_Artifact_Testing directory is designed to facilitate the reproduction of the case study results presented in the research paper. Due to the computational and time-intensive nature of processing the entire dataset, this directory focuses on verifying functionality and reusability using selected case studies.
-
-This directory contains all necessary artifacts to reproduce the case study results, including Data, Pre-trained models, Requirements, Evaluation Script, and Readme files with step-by-step instructions for reproducing results.
-
-### Requirements
-### **5. Case Studies**
-Analyze faults in real-world models like PixelCNN:
-1. Extract features:
-   ```bash
-   cd i_CaseStudy
-   python Feature_Extraction_CaseStudy.py
-   ```
-2. Run analysis:
-   ```bash
-   python PixelCNN_Analysis.py
-   ```
+# Train the fault detection model
+cd d_DEFault/A_Detection
+python Fault_Detection.py
+```
 
 ---
 
 ## **Licensing Information**
-This project is licensed under the **MIT License**. You are free to use, modify, and distribute the code with minimal restrictions, fostering collaboration and knowledge sharing.
+
+This project is licensed under the **MIT License**, allowing free usage, modification, and distribution. We encourage collaboration and knowledge sharing. See `LICENSE` for more details.
