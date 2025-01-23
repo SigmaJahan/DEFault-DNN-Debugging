@@ -1,6 +1,6 @@
 # **Replication Package for DEFault**
 
-Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025. 
+Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025. Pre-print: https://arxiv.org/abs/2501.12560
 
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
