@@ -122,6 +122,21 @@ default_env\Scripts\activate      # On Windows
 
 ---
 
+## **Usage: Sample Data**
+
+The 0_Artifact_Testing directory provides all necessary artifacts to reproduce case study results with minimal computational overhead. It includes:
+
+- **Data**
+- **Pre-trained models**
+- **Evaluation scripts**
+- **Configuration files**
+- **Requirements**
+- **README instructions**
+
+---
+
+## **Usage: Whole Dataset**
+
 ### **1. Data Collection**
 
 1. **Download Original DNN Programs**:  
