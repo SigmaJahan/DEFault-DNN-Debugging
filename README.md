@@ -5,6 +5,36 @@ Welcome to the replication package for **DEFault**, a framework designed to impr
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
 ---
+## **How DEFault Works**
+
+DEFault is a hierarchical classification framework that improves the detection and diagnosis of faults in Deep Neural Networks (DNNs) by leveraging both static and dynamic analysis. The workflow of DEFault consists of three primary stages:
+
+### **1. Fault Detection**  
+- DEFault monitors runtime features such as loss trends, activation statistics, and gradient behaviors during model training.  
+- It detects whether a given DNN program contains one or more faults using a trained classifier.
+
+### **2. Fault Categorization**  
+- Once a fault is detected, DEFault categorizes it into one or more fault types across seven categories:  
+  - Hyperparameter  
+  - Loss  
+  - Activation  
+  - Layer  
+  - Optimizer  
+  - Weight  
+  - Regularization  
+- This step is performed using multiple binary classifiers trained on extracted static and dynamic features.
+
+### **3. Root Cause Analysis**  
+- For deeper fault diagnosis, DEFault employs an explainer module leveraging SHAP to pinpoint the most influential static and dynamic features contributing to the fault.  
+- This helps developers understand the exact source of issues, such as incorrect hyperparameters or misconfigured layers.
+
+The figure below illustrates the workflow of DEFault, showing its fault detection, categorization, and root cause analysis processes.
+
+<img width="1434" alt="schematicupdated" src="https://github.com/user-attachments/assets/fba74550-da1d-40b2-b0ab-bb1dddd1d4da" />****
+
+By using this structured approach, DEFault effectively detects and diagnoses faults in both the training and model construction phases, providing actionable insights for improving DNN reliability.
+
+---
 
 ## **Table of Contents**
 1. [Contents](#contents)
@@ -16,14 +46,10 @@ Welcome to the replication package for **DEFault**, a framework designed to impr
     - [4. Model Evaluation](#4-model-evaluation)
     - [5. Case Studies](#5-case-studies)
 4. [Usage: Sample Data](#usage-sample-data)
-    - [1. Data](#data)
-    - [2. Models](#models)
-    - [3. Evaluation Scripts](#evaluation-scripts)
-    - [4. Config](#config)
-    - [5. Requirements](#requirements)
-    - [6. README.md](#readme)
 5. [Quick Start Guide](#quick-start-guide)
-6. [Licensing Information](#licensing-information)
+6. [How to Cite](#how-to-cite)
+7. [Authors](#authors)
+8. [Licensing Information](#licensing-information)
 
 ---
 
@@ -31,6 +57,7 @@ Welcome to the replication package for **DEFault**, a framework designed to impr
 
 ### Repository Structure
 
+- **`0_Artifact_Testing/`**: Scripts to run the experiment on one sample DNN model.
 - **`a_Data_Collection/`**: Scripts to collect and process StackOverflow posts for creating the dataset.
 - **`b_Fault_Seeding/`**: Scripts to inject faults into DNN programs using the extended DeepCrime framework:
   - **Part 1-DC**: Original DeepCrime code.
@@ -144,30 +171,28 @@ python PixelCNN_Analysis.py
 
 ---
 
-## **Usage: Sample Data**
+## **How to Cite**
 
-The `0_Artifact_Testing` directory provides all necessary artifacts to reproduce case study results with minimal computational overhead. It includes:
+If you use DEFault in your research, please cite our paper:
 
-- **Data**
-- **Pre-trained models**
-- **Evaluation scripts**
-- **Configuration files**
-- **Requirements**
-- **README instructions**
+```
+@inproceedings{default2025,
+  author    = {Sigma Jahan and Mehil B Shah and Parvez Mahbub and Mohammad Masudur Rahman},
+  title     = {Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification},
+  booktitle = {Proceedings of the International Conference on Software Engineering (ICSE)},
+  year      = {2025},
+  publisher = {IEEE}
+}
+```
 
 ---
 
-## **Quick Start Guide**
+## **Authors**
 
-```bash
-# Run a sample evaluation
-cd 0_Artifact_Testing/scripts
-python testForCaseStudy_RCA.py
-
-# Train the fault detection model
-cd d_DEFault/A_Detection
-python Fault_Detection.py
-```
+- **Sigma Jahan** - Dalhousie University, sigma.jahan@dal.ca  
+- **Mehil B Shah** - Dalhousie University, shahmehil@dal.ca  
+- **Parvez Mahbub** - Dalhousie University, parvezmrobin@dal.ca  
+- **Mohammad Masudur Rahman** - Dalhousie University, masud.rahman@dal.ca  
 
 ---
 
