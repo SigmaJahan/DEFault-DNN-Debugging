@@ -33,7 +33,6 @@ The figure below illustrates the workflow of DEFault, showing its fault detectio
 <img width="1434" alt="schematicupdated" src="https://github.com/user-attachments/assets/fba74550-da1d-40b2-b0ab-bb1dddd1d4da" />****
 
 By using this structured approach, DEFault effectively detects and diagnoses faults in both the training and model construction phases, providing actionable insights for improving DNN reliability.
-
 ---
 
 ## **Table of Contents**
