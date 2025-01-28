@@ -1,7 +1,7 @@
 # Case Study Artifacts for ICSE 2025 Artifact Evaluation
 
 ## Overview
-This repository contains the necessary artifacts to reproduce the case study results presented in the associated research paper. The artifacts provided include data files, pre-trained models, and scripts used for the evaluation.
+This repository contains the necessary artifacts to reproduce the case study results presented in the associated research paper (Pre-print: https://arxiv.org/abs/2501.12560). The artifacts provided include data files, pre-trained models, and scripts used for the evaluation.
 
 **Note:** This package focuses on reproducing the case study results (included in the paper) due to the computational and time-intensive nature of processing the entire dataset.
 
