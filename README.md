@@ -133,7 +133,7 @@ The 0_Artifact_Testing directory provides all necessary artifacts to reproduce c
 - **Requirements**
 - **README instructions**
 
-The expected result is provided inside the directory.
+The expected result for the sample data is provided inside the directory.
 
 ---
 
@@ -142,8 +142,8 @@ The expected result is provided inside the directory.
 ### **1. Data Collection**
 
 1. **Download Original DNN Programs**:  
-   - Download the 60 original DNN programs from StackOverflow:  
-     [Download Link](https://bit.ly/3CQPozK).
+   - Download the 60 original DNN programs that are collected from StackOverflow:  
+     [Download Link](https://bit.ly/3Cw0vOB).
 2. **Inject Faults**:  
    ```bash
    cd b_Fault_Seeding
@@ -170,6 +170,9 @@ python Fault_Detection.py
 ```
 
 ### **4. Model Evaluation**
+
+- Download the evaluation benchmark (Collected from DeepFD's Repository)
+  [Download Link](https://bit.ly/3CQPozK).
 
 ```bash
 cd e_Evaluation
