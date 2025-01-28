@@ -101,7 +101,7 @@ Upon running the provided scripts, the following outputs will be generated:
 ## Artifacts Explanation
 - **Evaluation Scripts**: Python scripts for Fault Detection, Fault Categorization, and Root Cause Analysis.
 - **Models**: Pre-trained models saved using `joblib`. These include classifiers for specific fault types (e.g., loss function faults, layer faults).
-- **Data**: Sample datasets required to reproduce the case study results, including dynamic and static features extracted from the PixelCNN model.
+- **Data**: Sample datasets required to reproduce the case study results, including dynamic and static features extracted from the PixelCNN model. [PixelCNN Model](https://github.com/sarus-tech/tf2-published-models)
 - **Config**: Configuration files to customize parameters for execution.
 
 ---
