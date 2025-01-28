@@ -108,7 +108,7 @@ Upon running the provided scripts, the following outputs will be generated:
 
 ## Known Limitations
 - Full experiment replication requires access to high-performance computing resources (e.g., Compute Canada).  
-- To reduce computational overhead, we provide extracted dynamic and static features from the sample PixelCNN model. These pre-processed features allow the scripts to run efficiently while producing the same results as those discussed in the paper.
+- To reduce computational overhead, we provided extracted dynamic and static features from the sample PixelCNN model. These pre-processed features allow the scripts to run efficiently while producing the same results as those discussed in the paper.
 
 ---
 
