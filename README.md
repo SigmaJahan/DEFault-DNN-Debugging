@@ -133,6 +133,8 @@ The 0_Artifact_Testing directory provides all necessary artifacts to reproduce c
 - **Requirements**
 - **README instructions**
 
+The expected result is provided inside the directory.
+
 ---
 
 ## **Usage: Whole Dataset**
@@ -194,6 +196,7 @@ If you use DEFault in your research, please cite our paper:
   title     = {Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification},
   booktitle = {Proceedings of the International Conference on Software Engineering (ICSE)},
   year      = {2025},
+  pages     = {13},
   publisher = {IEEE}
 }
 ```
