@@ -1,9 +1,9 @@
 # Case Study Artifacts for ICSE 2025 Artifact Evaluation
 
 ## Overview
-This repository contains the necessary artifacts to reproduce the case study results presented in the associated research paper (Pre-print: https://arxiv.org/abs/2501.12560). The artifacts provided include data files, pre-trained models, and scripts used for the evaluation.
+This repository contains the necessary artifacts to reproduce the case study results presented in the associated research paper (Pre-print: https://arxiv.org/abs/2501.12560). The artifacts provided include data (extracted features), pre-trained models, and scripts used for the evaluation.
 
-**Note:** This package focuses on reproducing the case study results (included in the paper) due to the computational and time-intensive nature of processing the entire dataset.
+**Note:** This package focuses on reproducing the case study results (included in the paper) due to the computational and time-intensive nature of processing the entire dataset. To reduce computational overhead, we provided extracted dynamic and static features from the sample PixelCNN model. These pre-processed features allow the scripts to run efficiently while producing the same results as those discussed in the paper.
 
 ---
 
@@ -106,13 +106,5 @@ Upon running the provided scripts, the following outputs will be generated:
 
 ---
 
-## Known Limitations
-- Full experiment replication requires access to high-performance computing resources (e.g., Compute Canada).  
-- To reduce computational overhead, we provided extracted dynamic and static features from the sample PixelCNN model. These pre-processed features allow the scripts to run efficiently while producing the same results as those discussed in the paper.
-
----
-
 ## Verifying the Results
-The provided artifacts enable reviewers to reproduce and verify the results of the case study without referring to the paper. Simply run the scripts as instructed above, and compare the generated outputs (fault detection, fault categorization, and root cause analysis) with the expected results outlined in this document.
-
-By following the steps and using the provided artifacts, reviewers can confirm the validity of the methodologies and results presented in the research paper.
+The provided artifacts enable reviewers to reproduce and verify the results of the case study without referring to the paper. Simply run the scripts as instructed above, and compare the generated outputs (fault detection, fault categorization, and root cause analysis) with the expected results outlined in this document. By following the steps and using the provided artifacts, reviewers can confirm the validity of the methodologies and results presented in the research paper.

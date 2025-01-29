@@ -1,8 +1,10 @@
 # **Replication Package for DEFault**
 
-Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025. Pre-print: https://arxiv.org/abs/2501.12560
+Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025.
 
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
+
+Pre-print of the paper can be found: https://arxiv.org/abs/2501.12560
 
 ---
 ## **How DEFault Works**
@@ -69,9 +71,10 @@ The figure below illustrates the workflow of DEFault, showing its fault detectio
   - **C_RootCauseAnalysis/**: Root cause analysis scripts.
 - **`e_Evaluation/`**: Scripts to evaluate DEFault on real-world and seeded faults.
 - **`f_Figures/`**: Figures used in the paper.
-- **`g_Dataset/`**: Labeled datasets for training and evaluation.
+- **`g_Dataset/`**: Labeled datasets for training and testing.
 - **`h_CohenKappaAnalysis/`**: Scripts for dataset consistency validation using Cohen's Kappa.
 - **`i_CaseStudy/`**: Scripts for case studies on real-world models (e.g., PixelCNN).
+- **`j_HPC_Slurm/`**: Example Script for Slurm job on Compute Canada with all the configuration.
 
 ---
 
@@ -80,7 +83,7 @@ The figure below illustrates the workflow of DEFault, showing its fault detectio
 ### **Operating System**
 Tested on:
 - Ubuntu 20.04 LTS or later
-- CentOS 7+ (for HPC environments such as Compute Canada)
+- HPC environments such as Compute Canada (Graham Cluster)
 
 Compatible with:
 - Windows 10/11 (via Windows Subsystem for Linux - WSL2)
@@ -95,11 +98,11 @@ Compatible with:
 
 **Recommended:**
 - GPU: NVIDIA with CUDA support
-- HPC access (e.g., Compute Canada) for large-scale execution
+- HPC access (e.g., Compute Canada) for complete experiment
 
 ### **Software Requirements**
 
-- **Python Version:** 3.8 or later  
+- **Python Version:** 3.10 or later  
 - **Dependencies:** Install via `requirements.txt`:  
   ```bash
   pip install -r requirements.txt
@@ -114,15 +117,15 @@ default_env\Scripts\activate      # On Windows
 
 ---
 
-## **Usage: Whole Dataset vs. Sample Data**
+## **Usage: Complete Experiment vs. Lightweight Verification**
 
 **Important:**  
-- Running the **whole dataset** requires significant computational resources and time.
-- Running the **sample data** is **recommended**, as it provides a quick and effective way to verify the framework's functionality.
+- Running the **Complete Experiment** on the whole dataset requires significant computational resources and time.
+- Running the **Lightweight Verification** on a sample DNN program is **recommended**, as it provides a quick and effective way to verify the framework's functionality.
 
 ---
 
-## **Usage: Sample Data**
+## **Usage: Lightweight Verification**
 
 The 0_Artifact_Testing directory provides all necessary artifacts to reproduce case study results with minimal computational overhead. It includes:
 
@@ -137,7 +140,7 @@ The expected result for the sample data is provided inside the directory.
 
 ---
 
-## **Usage: Whole Dataset**
+## **Usage: Complete Experiment**
 
 ### **1. Data Collection**
 
