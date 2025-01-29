@@ -98,7 +98,7 @@ Compatible with:
 
 **Recommended:**
 - GPU: NVIDIA with CUDA support
-- HPC access (e.g., Compute Canada) for complete experiment
+- HPC access (e.g., Compute Canada) for the complete experiment
 
 ### **Software Requirements**
 
@@ -175,7 +175,7 @@ python Fault_Detection.py
 ### **4. Model Evaluation**
 
 - Download the evaluation benchmark (Collected from [DeepFD](https://github.com/ArabelaTso/DeepFD/)
-  [Download Link](https://bit.ly/3CQPozK).
+  [Download Link](https://bit.ly/3CQPozK)).
 
 ```bash
 cd e_Evaluation
