@@ -4,7 +4,7 @@ Welcome to the replication package for **DEFault**, a framework designed to impr
 
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
-Pre-print of the paper can be found: https://arxiv.org/abs/2501.12560
+Pre-print of the paper can be found in this repo, named as 'K_Pre-Print.pdf'
 
 ---
 ## **How DEFault Works**
@@ -75,6 +75,7 @@ The figure below illustrates the workflow of DEFault, showing its fault detectio
 - **`h_CohenKappaAnalysis/`**: Scripts for dataset consistency validation using Cohen's Kappa.
 - **`i_CaseStudy/`**: Scripts for case studies on real-world models (e.g., PixelCNN).
 - **`j_HPC_Slurm/`**: Example Script for Slurm job on Compute Canada with all the configuration.
+- **`K_Pre-Print.pdf/`**: Pre-print of the full paper. 
 
 ---
 
