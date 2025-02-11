@@ -91,7 +91,6 @@ def mutate_model():
 
 
     exc.execute_original_model(file_path, results_path)
-
     exc.execute_mutants(mutants_path, mutations)
 
 

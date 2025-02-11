@@ -8,7 +8,7 @@ from convolution_operators import (
     PoolingTransformer, StridesTransformer, PaddingTransformer,
     NeuronTransformer, CNNCheck
 )
-from rnn_operators import LayerInserter, LayerRemover, LayerTypeSwapper, LayerUnitModifier
+from recurrent_operators import LayerInserter, LayerRemover, LayerTypeSwapper, LayerUnitModifier
 
 # Suppress warnings
 warnings.filterwarnings("ignore")

@@ -1,4 +1,4 @@
-# DeepCrime++
+# EFI
 
 Running Instructions:
 

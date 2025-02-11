@@ -15,8 +15,6 @@ def operator_change_optimisation_function(old_optimiser = None):
         Returns: int (0 - success, -1 otherwise)
     """
 
-    # new_optimiser = random.choice(const.keras_optimisers)#.remove(old_act_func)
-
     if props.change_optimisation_function["optimisation_function_udp"] is not None:
         new_optimiser = props.change_optimisation_function["optimisation_function_udp"]
     elif props.change_optimisation_function["mutation_target"] is None:

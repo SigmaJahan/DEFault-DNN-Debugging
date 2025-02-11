@@ -160,8 +160,12 @@ python testForCaseStudy_RCA.py
 
 1. **Data Collection & Fault Seeding:**
 ```bash
-cd b_Fault_Seeding
-python Fault_Seeding_Script.py
+# Run Part 1 (Deep Crime) - Must have HPC support
+cd b_Fault_Seeding/Part 1-DC
+python run_deepcrime_full.py
+# Run Part 2 (Extended Fault Injection) - Must have HPC support
+cd b_Fault_Seeding/Part 2-EFI
+python main.py
 ```
 
 2. **Feature Extraction:**
