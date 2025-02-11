@@ -9,16 +9,23 @@ import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
-df = pd.read_csv('/Users/sigmajahan/Documents/GitHub/ICSE_2025/g_Dataset/labeled_static_feature_RCA/static_features_df.csv') 
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+TRAIN_DATA_PATH = os.path.join(BASE_DIR, "g_Dataset", "labeled_static_feature_RCA", "static_features_df.csv")
+TEST_DATA_PATH = os.path.join(BASE_DIR, "0_Artifact_Testing", "data", "static_features_df_test_file.csv")
+
+df = pd.read_csv(TRAIN_DATA_PATH)
 target_column = 'Buggy'
+
 X = df.drop(columns=[target_column])
 y = df[target_column]
-X = X.drop(columns=['Model_File'], errors='ignore')  #
+X = X.drop(columns=['Model_File'], errors='ignore')
+
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 model = xgb.XGBClassifier(n_estimators=100, random_state=42)
 model.fit(X_train, y_train)
-test_df = pd.read_csv('/Users/sigmajahan/Documents/GitHub/ICSE_2025/0_Artifact_Testing/data/static_features_df_test_file.csv')  
+
+test_df = pd.read_csv(TEST_DATA_PATH)
 unseen_sample = test_df.drop(columns=[target_column]).iloc[0]  
 unseen_sample_df = pd.DataFrame([unseen_sample], columns=X.columns)
 

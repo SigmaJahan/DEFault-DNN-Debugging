@@ -7,8 +7,9 @@ from joblib import load
 import configparser
 from pathlib import Path
 
-MODEL_DIR = "/Users/sigmajahan/Documents/GitHub/ICSE_2025/0_Artifact_Testing/models" 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+MODEL_DIR = os.path.join(BASE_DIR, "models")
+sys.path.append(BASE_DIR)
 
 def load_classifier(filename):
     full_path = os.path.join(MODEL_DIR, filename)
@@ -53,15 +54,25 @@ def convert_tensor_to_bool(tensor_str):
         return 'True' in tensor_str
     return bool(tensor_str)
 
-def load_classifier_thresholds(filepath="/Users/sigmajahan/Documents/GitHub/ICSE_2025/0_Artifact_Testing/config/config.ini"):
+import os
+import configparser
+
+def load_classifier_thresholds(filepath="config/config.ini"):
+    script_dir = os.path.dirname(os.path.abspath(__file__)) 
+    config_path = os.path.join(script_dir, filepath)
+
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Configuration file not found at: {config_path}")
     config = configparser.ConfigParser()
     config.clear()
-    config.read(filepath)
+    config.read(config_path)
+
     if 'ClassifierThresholds' in config:
         thresholds = {k.lower(): float(v) for k, v in config['ClassifierThresholds'].items()}
         return thresholds
     else:
         raise KeyError("The 'ClassifierThresholds' section was not found in the config file.")
+
         
 classifier_thresholds = load_classifier_thresholds()
 
@@ -149,8 +160,7 @@ def process_test_files(path, classifiers):
 
     return pd.DataFrame(results)
 
-
-File_Path_Test_File = "/Users/sigmajahan/Documents/GitHub/ICSE_2025/0_Artifact_Testing/data/pixelcnn_buggy.csv"
+File_Path_Test_File = os.path.join(BASE_DIR, "data", "pixelcnn_buggy.csv")
 df_results = process_test_files(File_Path_Test_File, classifiers)
 
 def generate_user_friendly_output(df_results):

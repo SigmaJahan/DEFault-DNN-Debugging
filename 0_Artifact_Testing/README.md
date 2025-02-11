@@ -1,7 +1,4 @@
-# Case Study Artifacts for ICSE 2025 Artifact Evaluation
-
-## Overview
-This repository contains the necessary artifacts to reproduce the case study results presented in the associated research paper (Pre-print: https://arxiv.org/abs/2501.12560). The artifacts provided include data (extracted features), pre-trained models, and scripts used for the evaluation.
+# Evaluation of DEFault on a sample data
 
 **Note:** This package focuses on reproducing the case study results (included in the paper) due to the computational and time-intensive nature of processing the entire dataset. To reduce computational overhead, we provided extracted dynamic and static features from the sample PixelCNN model. These pre-processed features allow the scripts to run efficiently while producing the same results as those discussed in the paper.
 
@@ -10,8 +7,6 @@ This repository contains the necessary artifacts to reproduce the case study res
 ## Repository Structure
 ```
 0_Artifact_Testing/
-├── README.md                 # Documentation (this file)
-├── requirements.txt          # Dependencies list
 ├── config/
 │   ├── config.ini            # Configuration settings
 ├── models/
@@ -31,23 +26,7 @@ This repository contains the necessary artifacts to reproduce the case study res
 │   ├── static_features_df_test_file.csv 
 └── LICENSE.txt        
 ```
-
----
-
-## Installation
-### Prerequisites
-Ensure you have Python 3.10+ installed. You can install the required dependencies using:
-
-```
-pip install -r requirements.txt
-```
-
----
-
-## Configuration
-Configuration parameters are stored in `config/config.ini`. Ensure the paths and parameters are correctly set before running the scripts.
-
----
+-----
 
 ## Running the Case Study
 To execute the scripts and reproduce the results, follow these steps:

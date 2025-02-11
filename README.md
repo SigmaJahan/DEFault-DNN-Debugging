@@ -1,94 +1,94 @@
-# **Replication Package for DEFault**
+# **DEFault: A Framework for Fault Detection and Diagnosis in Deep Neural Networks**
 
-Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper, which has been accepted in ICSE - Research Track 2025.
+Welcome to the replication package for **DEFault**, a framework designed to improve the detection and diagnosis of faults in Deep Neural Networks (DNNs). This repository provides all the necessary code and data to reproduce the experiments from our paper accepted at ICSE - Research Track 2025:
 
 **"Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification."**
 
-Pre-print of the paper can be found in this repo, named as 'K_Pre-Print.pdf'
+The pre-print of the paper is available in this repository as **`K_Pre-Print.pdf`**.
 
 ---
-## **How DEFault Works**
+## **Table of Contents**
 
-DEFault is a hierarchical classification framework that improves the detection and diagnosis of faults in Deep Neural Networks (DNNs) by leveraging both static and dynamic analysis. The workflow of DEFault consists of three primary stages:
+1. [Introduction](#introduction)
+2. [How DEFault Works](#how-default-works)
+3. [Repository Structure](#repository-structure)
+4. [Requirements](#requirements)
+   - [Operating System](#operating-system)
+   - [Hardware Requirements](#hardware-requirements)
+   - [Software Requirements](#software-requirements)
+5. [Usage](#usage)
+   - [Quick Start: Lightweight Verification](#quick-start-lightweight-verification)
+   - [Running the Complete Experiment](#running-the-complete-experiment)
+6. [How to Cite](#how-to-cite)
+7. [Authors](#authors)
+8. [License](#license)
 
-### **1. Fault Detection**  
-- DEFault monitors runtime features such as loss trends, activation statistics, and gradient behaviors during model training.  
-- It detects whether a given DNN program contains one or more faults using a trained classifier.
+---
+## **Introduction**
 
-### **2. Fault Categorization**  
-- Once a fault is detected, DEFault categorizes it into one or more fault types across seven categories:  
-  - Hyperparameter  
-  - Loss  
-  - Activation  
-  - Layer  
-  - Optimizer  
-  - Weight  
-  - Regularization  
-- This step is performed using multiple binary classifiers trained on extracted static and dynamic features.
+**DEFault** is a hierarchical classification framework that improves fault detection and diagnosis in DNNs by leveraging both static and dynamic analysis. It consists of three primary stages:
 
-### **3. Root Cause Analysis**  
-- For deeper fault diagnosis, DEFault employs an explainer module leveraging SHAP to pinpoint the most influential static and dynamic features contributing to the fault.  
-- This helps developers understand the exact source of issues, such as incorrect hyperparameters or misconfigured layers.
+1. Fault Detection - Identifies faulty DNN programs based on runtime features.
+2. Fault Categorization - Classifies detected faults into seven categories.
+3. Root Cause Analysis - Uses explainable AI (SHAP) to pinpoint the most influential static and dynamic features contributing to faults.
 
-The figure below illustrates the workflow of DEFault, showing its fault detection, categorization, and root cause analysis processes.
+**Illustrative Workflow**
 
 <img width="1434" alt="schematicupdated" src="https://github.com/user-attachments/assets/fba74550-da1d-40b2-b0ab-bb1dddd1d4da" />
 
 ---
+## **How DEFault Works**
 
-## **Table of Contents**
-1. [Contents](#contents)
-2. [Requirements](#requirements)
-3. [Usage: Whole Dataset vs. Sample Data](#usage-whole-dataset-vs-sample-data)
-    - [1. Data Collection](#1-data-collection)
-    - [2. Feature Extraction](#2-feature-extraction)
-    - [3. Model Training](#3-model-training)
-    - [4. Model Evaluation](#4-model-evaluation)
-    - [5. Case Studies](#5-case-studies)
-4. [Usage: Sample Data](#usage-sample-data)
-5. [Quick Start Guide](#quick-start-guide)
-6. [How to Cite](#how-to-cite)
-7. [Authors](#authors)
-8. [Licensing Information](#licensing-information)
+### **1. Fault Detection**
+- Monitors runtime features such as loss trends, activation statistics, and gradient behaviors.
+- Uses a trained classifier to detect if a DNN program contains faults.
 
----
+### **2. Fault Categorization**
+- Categorizes detected faults into one or more of the following seven categories:
+  - Hyperparameter
+  - Loss
+  - Activation
+  - Layer
+  - Optimizer
+  - Weight
+  - Regularization
+- Multiple binary classifiers are used for this classification.
 
-## **Contents**
-
-### Repository Structure
-
-- **`0_Artifact_Testing/`**: Scripts to run the experiment on one sample DNN model.
-- **`a_Data_Collection/`**: Scripts to collect and process StackOverflow posts for creating the dataset.
-- **`b_Fault_Seeding/`**: Scripts to inject faults into DNN programs using the extended DeepCrime framework:
-  - **Part 1-DC**: Original DeepCrime code.
-  - **Part 2-EFI**: Extended framework for more fault types, including convolutional and recurrent models.
-- **`c_Feature_Extraction/`**: Scripts for extracting features from DNN programs:
-  - **Dynamic**: Runtime feature extraction.
-  - **Static**: Structural feature extraction.
-- **`d_DEFault/`**: Implementation of DEFault:
-  - **A_Detection/**: Fault detection scripts.
-  - **B_Categorization/**: Fault categorization scripts.
-  - **C_RootCauseAnalysis/**: Root cause analysis scripts.
-- **`e_Evaluation/`**: Scripts to evaluate DEFault on real-world and seeded faults.
-- **`f_Figures/`**: Figures used in the paper.
-- **`g_Dataset/`**: Labeled datasets for training and testing.
-- **`h_CohenKappaAnalysis/`**: Scripts for dataset consistency validation using Cohen's Kappa.
-- **`i_CaseStudy/`**: Scripts for case studies on real-world models (e.g., PixelCNN).
-- **`j_HPC_Slurm/`**: Example Script for Slurm job on Compute Canada with all the configuration.
-- **`K_Pre-Print.pdf/`**: Pre-print of the full paper. 
+### **3. Root Cause Analysis**
+- Utilizes SHAP for explainability.
+- Identifies the most influential static and dynamic features responsible for the fault.
+- Helps developers diagnose and fix the root cause effectively.
 
 ---
+## **Repository Structure**
 
+```
+DEFault
+├── 0_Artifact_Testing       # Scripts for lightweight verification on sample DNN models
+├── a_Data_Collection        # Scripts for collecting and processing StackOverflow posts
+├── b_Fault_Seeding          # Scripts for fault injection (DeepCrime and EFI extension)
+├── c_Feature_Extraction     # Static & Dynamic feature extraction scripts
+├── d_DEFault                # Implementation of DEFault (Fault Detection, Categorization, RCA)
+├── e_Evaluation             # Evaluation scripts for real-world and seeded faults
+├── f_Figures                # Figures used in the paper
+├── g_Dataset                # Labeled datasets for training and testing
+├── h_CohenKappaAnalysis     # Scripts for dataset consistency validation (Cohen’s Kappa)
+├── i_CaseStudy              # Scripts for real-world case studies (e.g., PixelCNN)
+├── j_HPC_Slurm              # Slurm job script for Compute Canada
+├── K_Pre-Print.pdf          # Pre-print of the full paper
+```
+
+---
 ## **Requirements**
 
 ### **Operating System**
-Tested on:
+**Tested on:**
 - Ubuntu 20.04 LTS or later
-- HPC environments such as Compute Canada (Graham Cluster)
+- HPC environments (e.g., Compute Canada, Graham Cluster)
 
-Compatible with:
-- Windows 10/11 (via Windows Subsystem for Linux - WSL2)
-- macOS Monterey (M1/M2 support may require additional configuration)
+**Compatible with:**
+- Windows 10/11 (via WSL2)
+- macOS Monterey (M1/M2 support may require additional setup)
 
 ### **Hardware Requirements**
 
@@ -99,92 +99,94 @@ Compatible with:
 
 **Recommended:**
 - GPU: NVIDIA with CUDA support
-- HPC access (e.g., Compute Canada) for the complete experiment
+- HPC access (e.g., Compute Canada) for full experiments
 
 ### **Software Requirements**
 
-- **Python Version:** 3.10 or later  
-- **Dependencies:** Install via `requirements.txt`:  
-  ```bash
-  pip install -r requirements.txt
-  ```
+- **Python:** 3.10 or later
 
-**Recommended:** Create a virtual environment before installation:  
+- **Create a virtual environment:**
 ```bash
 python -m venv default_env
-source default_env/bin/activate   # On macOS/Linux
-default_env\Scripts\activate      # On Windows
+source default_env/bin/activate   # macOS/Linux
+default_env\Scripts\activate      # Windows
 ```
 
+- **Install dependencies:**
+```bash
+pip install -r requirements.txt
+```
 ---
+## **Usage**
 
-## **Usage: Complete Experiment vs. Lightweight Verification**
+### **Quick Start: Lightweight Verification**
 
-**Important:**  
-- Running the **Complete Experiment** on the whole dataset requires significant computational resources and time.
-- Running the **Lightweight Verification** on a sample DNN program is **recommended**, as it provides a quick and effective way to verify the framework's functionality.
+1. **Navigate to the evaluation scripts directory:**
+```bash
+cd 0_Artifact_Testing/evaluation_scripts
+```
+
+2. **Run the Fault Detection & Categorization (FD_FC) script:**
+```bash
+python testForCaseStudy_FD_FC.py
+```
+**Expected Output:**
+
+<img src="f_Figures/result_sample.png" width="600"/>
+
+- Fault Detection (FD): Confirms if the PixelCNN model has faults.
+- Fault Categorization (FC): Identifies the type of faults, including:
+  - Loss Function Fault
+  - Hyperparameter Fault
+  - Layer Fault
+- Note: The model mistakenly identify an Optimization Fault due to feature overlap.
+
+3. **Run the Root Cause Analysis (RCA) script:**
+```bash
+python testForCaseStudy_RCA.py
+```
+**Expected Output:**
+- Identifies the root causes of the Layer Fault using static features:
+  - Top@1: CountDense - Check the number of Dense layers.
+  - Top@2: Max_Neurons - Verify the maximum number of neurons in any layer.
+  - Top@3: CountConv2D - Inspect Conv2D layer configurations.
 
 ---
+### **Running the Complete Experiment**
 
-## **Usage: Lightweight Verification**
+**Download the dataset:**
+- **DNN Programs:** [Download Link](https://bit.ly/3Cw0vOB)
+- **Evaluation Benchmark:** [Download Link](https://bit.ly/3CQPozK)
 
-The 0_Artifact_Testing directory provides all necessary artifacts to reproduce case study results with minimal computational overhead. It includes:
+1. **Data Collection & Fault Seeding:**
+```bash
+cd b_Fault_Seeding
+python Fault_Seeding_Script.py
+```
 
-- **Data**
-- **Pre-trained models**
-- **Evaluation scripts**
-- **Configuration files**
-- **Requirements**
-- **README instructions**
-
-The expected result for the sample data is provided inside the directory.
-
----
-
-## **Usage: Complete Experiment**
-
-### **1. Data Collection**
-
-1. **Download Original DNN Programs**:  
-   - Download the 60 original DNN programs that are collected from StackOverflow:  
-     [Download Link](https://bit.ly/3Cw0vOB).
-2. **Inject Faults**:  
-   ```bash
-   cd b_Fault_Seeding
-   python Fault_Seeding_Script.py
-   ```
-
-### **2. Feature Extraction**
-
+2. **Feature Extraction:**
 ```bash
 cd c_Feature_Extraction/Static
 python Static_Feature_Extraction.py
 ```
-
 ```bash
 cd c_Feature_Extraction/Dynamic
 python Dynamic_Feature_Extraction.py
 ```
 
-### **3. Model Training**
-
+3. **Model Training:**
 ```bash
 cd d_DEFault/A_Detection
 python Fault_Detection.py
 ```
 
-### **4. Model Evaluation**
-
-- Download the evaluation benchmark (Collected from [DeepFD](https://github.com/ArabelaTso/DeepFD/)
-  [Download Link](https://bit.ly/3CQPozK)).
-
+4. **Model Evaluation:**
 ```bash
 cd e_Evaluation
 python Fault_Evaluation_Detection_Diagnosis.py
 ```
 
-### **5. Case Studies**
-
+5. **Case Studies:**
 ```bash
 cd i_CaseStudy
 python Feature_Extraction_CaseStudy.py
@@ -192,33 +194,25 @@ python PixelCNN_Analysis.py
 ```
 
 ---
-
 ## **How to Cite**
 
-If you use DEFault in your research, please cite our paper:
-
-```
+```bibtex
 @inproceedings{default2025,
   author    = {Sigma Jahan and Mehil B Shah and Parvez Mahbub and Mohammad Masudur Rahman},
   title     = {Improved Detection and Diagnosis of Faults in Deep Neural Networks using Hierarchical and Explainable Classification},
   booktitle = {Proceedings of the International Conference on Software Engineering (ICSE)},
   year      = {2025},
-  pages     = {13},
   publisher = {IEEE}
 }
 ```
 
 ---
-
 ## **Authors**
-
 - **Sigma Jahan** - Dalhousie University, sigma.jahan@dal.ca  
 - **Mehil B Shah** - Dalhousie University, shahmehil@dal.ca  
 - **Parvez Mahbub** - Dalhousie University, parvezmrobin@dal.ca  
 - **Mohammad Masudur Rahman** - Dalhousie University, masud.rahman@dal.ca  
-
 ---
+## **License**
 
-## **Licensing Information**
-
-This project is licensed under the **MIT License**, allowing free usage, modification, and distribution. We encourage collaboration and knowledge sharing. See `LICENSE` for more details.
+This project is licensed under the **MIT License**. See `LICENSE` for details.
