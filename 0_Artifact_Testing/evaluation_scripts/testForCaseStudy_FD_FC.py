@@ -7,17 +7,24 @@ from joblib import load
 import configparser
 from pathlib import Path
 
-BASE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-MODEL_DIR = os.path.join(BASE_DIR, "models")
-sys.path.append(BASE_DIR)
+# Set BASE_DIR to the ICSE_2025 root directory
+BASE_DIR = Path(__file__).resolve().parent.parent 
+ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
+MODEL_DIR = ARTIFACT_DIR / "models"
+CONFIG_PATH = ARTIFACT_DIR / "config" / "config.ini"
+DATA_DIR = ARTIFACT_DIR / "data"
+
+sys.path.append(str(BASE_DIR))
 
 def load_classifier(filename):
-    full_path = os.path.join(MODEL_DIR, filename)
-    if os.path.exists(full_path):
+    """Loads the classifier model from the models directory."""
+    full_path = MODEL_DIR / filename
+    if full_path.exists():
         return load(full_path)
     else:
         raise FileNotFoundError(f"Model file {full_path} not found. Please ensure the model is saved in the specified directory.")
 
+# Load all classifiers
 try:
     best_clf_detection = load_classifier('best_clf_detection.joblib')
     best_clf_activation = load_classifier('best_clf_activation.joblib')
@@ -29,8 +36,9 @@ try:
     best_clf_weights = load_classifier('best_clf_weights.joblib')
 except FileNotFoundError as e:
     print(str(e))
-    sys.exit(1)  
+    sys.exit(1)
 
+# List of classifiers
 classifiers = [
     (best_clf_detection, 'Detection'),
     (best_clf_activation, 'Activation'),
@@ -54,18 +62,14 @@ def convert_tensor_to_bool(tensor_str):
         return 'True' in tensor_str
     return bool(tensor_str)
 
-import os
-import configparser
+def load_classifier_thresholds(filepath=CONFIG_PATH):
+    """Loads classifier thresholds from config.ini."""
+    if not filepath.exists():
+        raise FileNotFoundError(f"Configuration file not found at: {filepath}")
 
-def load_classifier_thresholds(filepath="config/config.ini"):
-    script_dir = os.path.dirname(os.path.abspath(__file__)) 
-    config_path = os.path.join(script_dir, filepath)
-
-    if not os.path.exists(config_path):
-        raise FileNotFoundError(f"Configuration file not found at: {config_path}")
     config = configparser.ConfigParser()
     config.clear()
-    config.read(config_path)
+    config.read(filepath)
 
     if 'ClassifierThresholds' in config:
         thresholds = {k.lower(): float(v) for k, v in config['ClassifierThresholds'].items()}
@@ -73,10 +77,11 @@ def load_classifier_thresholds(filepath="config/config.ini"):
     else:
         raise KeyError("The 'ClassifierThresholds' section was not found in the config file.")
 
-        
+# Load classifier thresholds
 classifier_thresholds = load_classifier_thresholds()
 
 def preprocess_data(df):
+    """Preprocesses input data to ensure numerical stability."""
     if 'dying_relu' in df.columns:
         df['dying_relu'] = df['dying_relu'].apply(convert_tensor_to_bool).astype(int)
     if 'saturated_activation' in df.columns:
@@ -86,43 +91,46 @@ def preprocess_data(df):
     df.fillna(df.mean(), inplace=True)
     df.replace([np.inf, -np.inf], np.nan, inplace=True)
     df.fillna(df.mean(), inplace=True)
+
     for column in df.columns:
         lower_quantile = df[column].quantile(0.01)
         upper_quantile = df[column].quantile(0.99)
         df[column] = df[column].clip(lower=lower_quantile, upper=upper_quantile)
+
     for col in columns_to_keep:
         if col not in df.columns:
-            df[col] = 0  
+            df[col] = 0  # Fill missing columns with 0
+
     df = df[columns_to_keep]
     return df
 
 def process_test_files(path, classifiers):
+    """Processes test CSV files and applies all classifiers."""
     results = []
-    scaler = StandardScaler() 
+    scaler = StandardScaler()
 
     files_to_process = []
-    if os.path.isfile(path):
+    if path.is_file():
         files_to_process = [path]
-    elif os.path.isdir(path):
-        files_to_process = [os.path.join(path, f) for f in os.listdir(path) if f.endswith('.csv')]
+    elif path.is_dir():
+        files_to_process = [path / f for f in os.listdir(path) if f.endswith('.csv')]
     else:
         raise FileNotFoundError(f"The path {path} does not exist or is not a file/directory.")
 
     for clf, clf_name in classifiers:
         classifier_results = []
         probabilities = []
+
         for file_path in files_to_process:
             df = pd.read_csv(file_path)
             if df.empty:
                 continue
 
             df_processed = preprocess_data(df)
-            if df_processed.isna().sum().sum() > 0:
-                df_processed.fillna(0, inplace=True)
+            df_processed.fillna(0, inplace=True)
 
             X = scaler.fit_transform(df_processed)
-            if np.isnan(X).any() or np.isinf(X).any():
-                X = np.nan_to_num(X)
+            X = np.nan_to_num(X)
 
             proba = clf.predict_proba(X)
             positive_class_probs = [p[1] for p in proba]
@@ -137,12 +145,10 @@ def process_test_files(path, classifiers):
                 continue
 
             df_processed = preprocess_data(df)
-            if df_processed.isna().sum().sum() > 0:
-                df_processed.fillna(0, inplace=True)
+            df_processed.fillna(0, inplace=True)
 
             X = scaler.transform(df_processed)
-            if np.isnan(X).any() or np.isinf(X).any():
-                X = np.nan_to_num(X)
+            X = np.nan_to_num(X)
 
             proba = clf.predict_proba(X)
             positive_class_probs = [p[1] for p in proba]
@@ -150,7 +156,7 @@ def process_test_files(path, classifiers):
             overall_label = 'Positive' if avg_probability >= threshold else 'Negative'
 
             classifier_results.append({
-                'filename': os.path.basename(file_path),
+                'filename': file_path.name,
                 'average_probability': avg_probability,
                 'overall_label': overall_label,
                 'classifier': clf_name
@@ -160,17 +166,18 @@ def process_test_files(path, classifiers):
 
     return pd.DataFrame(results)
 
-File_Path_Test_File = os.path.join(BASE_DIR, "data", "pixelcnn_buggy.csv")
+# Define the test file path (relative)
+File_Path_Test_File = DATA_DIR / "pixelcnn_buggy.csv"
 df_results = process_test_files(File_Path_Test_File, classifiers)
 
 def generate_user_friendly_output(df_results):
+    """Formats results for display."""
     df_results.rename(columns={
         'filename': 'File Name',
         'average_probability': 'Avg. Probability (%)',
         'overall_label': 'Bug Detected?',
         'classifier': 'Bug Category'
     }, inplace=True)
-
 
     df_results['Avg. Probability (%)'] = (df_results['Avg. Probability (%)'] * 100).round(1)
     df_results['Bug Detected?'] = df_results['Bug Detected?'].apply(lambda x: 'Yes ✅' if x == 'Positive' else 'No ❌')
