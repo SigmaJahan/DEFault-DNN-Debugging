@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import xgboost as xgb
 from sklearn.model_selection import train_test_split
 from pathlib import Path
+import warnings
+warnings.simplefilter(action='ignore', category=UserWarning)
+
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
@@ -94,3 +97,4 @@ for feature, insight in shap_faults.items():
     print(f"{feature}: {insight}")
 shap.decision_plot(explainer_shap.expected_value, shap_values, unseen_sample_df)
 plt.show()
+plt.savefig("shap_plot.png")

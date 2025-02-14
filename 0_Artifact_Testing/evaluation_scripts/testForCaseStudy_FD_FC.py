@@ -6,6 +6,8 @@ from sklearn.preprocessing import StandardScaler
 from joblib import load
 import configparser
 from pathlib import Path
+import warnings
+warnings.simplefilter(action='ignore', category=UserWarning)
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
