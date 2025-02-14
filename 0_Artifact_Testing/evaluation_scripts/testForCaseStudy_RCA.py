@@ -95,6 +95,8 @@ print("SHAP Important Features:", shap_important_features)
 print("SHAP Fault Insights:")
 for feature, insight in shap_faults.items():
     print(f"{feature}: {insight}")
+    
+shap.initjs() # Required for Jupyter Notebook
+plt.figure(figsize=(10, 6))
 shap.decision_plot(explainer_shap.expected_value, shap_values, unseen_sample_df)
-plt.show()
-plt.savefig("shap_plot.png")
+plt.show(block=True)
