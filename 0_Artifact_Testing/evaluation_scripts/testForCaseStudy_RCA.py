@@ -8,7 +8,7 @@ from sklearn.model_selection import train_test_split
 from pathlib import Path
 
 # Set BASE_DIR dynamically to the root ICSE_2025 directory
-BASE_DIR = Path(__file__).resolve().parent.parent 
+BASE_DIR = Path(__file__).resolve().parent 
 DATASET_DIR = BASE_DIR / "g_Dataset" / "labeled_static_feature_RCA"
 ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing" / "data"
 

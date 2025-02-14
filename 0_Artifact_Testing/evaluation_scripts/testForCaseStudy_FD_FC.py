@@ -8,7 +8,7 @@ import configparser
 from pathlib import Path
 
 # Set BASE_DIR to the ICSE_2025 root directory
-BASE_DIR = Path(__file__).resolve().parent.parent 
+BASE_DIR = Path(__file__).resolve().parent 
 ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
 MODEL_DIR = ARTIFACT_DIR / "models"
 CONFIG_PATH = ARTIFACT_DIR / "config" / "config.ini"
