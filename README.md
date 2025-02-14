@@ -103,7 +103,7 @@ DEFault
 
 ### **Software Requirements**
 
-- **Python:** 3.10 or later
+- **Python:** 3.10.16
 
 - **Create a virtual environment:**
 ```bash
@@ -120,6 +120,8 @@ pip install -r requirements.txt
 ## **Usage**
 
 ### **Quick Start: Lightweight Verification**
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/18z1Gsx1_Ibj-sblO4vnOI7He92UIWx0p?usp=sharing)
 
 1. **Navigate to the evaluation scripts directory:**
 ```bash
