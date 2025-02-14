@@ -148,10 +148,13 @@ python testForCaseStudy_FD_FC.py
 python testForCaseStudy_RCA.py
 ```
 **Expected Output:**
-- Identifies the root causes of the Layer Fault using static features:
-  - Top@1: CountDense - Check the number of Dense layers.
-  - Top@2: Max_Neurons - Verify the maximum number of neurons in any layer.
-  - Top@3: CountConv2D - Inspect Conv2D layer configurations.
+- Identifies and ranks the potential root causes of the Layer Fault using static features:
+
+  - Top@1: CountDense: Check the configuration and number of Dense layers.
+  - Top@2: Min_Neurons: No specific fault message
+  - Top@3: CountConv2D: Inspect the configuration of 2D convolutional layers.
+  - Top@4: Countsoftmax: Look into the activation function Softmax and its placement.
+  - Top@5: Max_Neurons: Verify the maximum number of neurons in any single layer.
 
 ---
 ### **Running the Complete Experiment**
