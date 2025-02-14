@@ -9,7 +9,6 @@ from pathlib import Path
 import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
 DATA_DIR = ARTIFACT_DIR / "data"
@@ -96,7 +95,7 @@ print("SHAP Fault Insights:")
 for feature, insight in shap_faults.items():
     print(f"{feature}: {insight}")
     
-shap.initjs() # Required for Jupyter Notebook
+shap.initjs() 
 plt.figure(figsize=(10, 6))
 shap.decision_plot(explainer_shap.expected_value, shap_values, unseen_sample_df)
-plt.show(block=True)
+plt.show()
