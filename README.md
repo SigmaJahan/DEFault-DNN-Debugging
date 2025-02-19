@@ -170,10 +170,10 @@ python testForCaseStudy_RCA.py
 1. **Data Collection & Fault Seeding:**
 ```bash
 # Run Part 1 (Deep Crime) 
-cd b_Fault_Seeding/'Part 1-DC'
+cd "b_Fault_Seeding/Part 1-DC"
 python run_deepcrime_full.py
 # Run Part 2 (Extended Fault Injection)
-cd b_Fault_Seeding/'Part 2-EFI'
+cd "b_Fault_Seeding/Part 2-EFI"
 python main.py
 ```
 
