@@ -163,13 +163,17 @@ python testForCaseStudy_RCA.py
 - **DNN Programs:** [Download Link](https://bit.ly/3Cw0vOB)
 - **Evaluation Benchmark:** [Download Link](https://bit.ly/3CQPozK)
 
+⚠️ **Important Note**
+
+🔴 HPC Support Required: To run the complete experiment below, you must have access to an HPC environment. The steps below should be executed using run_script.slurm from j_HPC_Slurm directory, where all required dependencies will be installed inside the HPC environment.
+
 1. **Data Collection & Fault Seeding:**
 ```bash
-# Run Part 1 (Deep Crime) - Must have HPC support
-cd b_Fault_Seeding/Part 1-DC
+# Run Part 1 (Deep Crime) 
+cd b_Fault_Seeding/'Part 1-DC'
 python run_deepcrime_full.py
-# Run Part 2 (Extended Fault Injection) - Must have HPC support
-cd b_Fault_Seeding/Part 2-EFI
+# Run Part 2 (Extended Fault Injection)
+cd b_Fault_Seeding/'Part 2-EFI'
 python main.py
 ```
 
