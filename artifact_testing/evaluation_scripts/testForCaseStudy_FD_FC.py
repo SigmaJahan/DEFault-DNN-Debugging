@@ -10,7 +10,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
+ARTIFACT_DIR = BASE_DIR / "artifact_testing"
 MODEL_DIR = ARTIFACT_DIR / "models"
 CONFIG_PATH = ARTIFACT_DIR / "config" / "config.ini"
 DATA_DIR = ARTIFACT_DIR / "data"

@@ -1,1 +1,25 @@
 .DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node / Next.js (tool frontend)
+node_modules/
+.next/
+.npm/
+
+# Local tooling / temp
+.tmp/
+*.log
+.claude/
+
+# Downloaded dataset (lives on Zenodo, DOI 10.5281/zenodo.20337241)
+**/static_features_df.csv
+**/training_logs/

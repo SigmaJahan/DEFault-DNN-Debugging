@@ -10,11 +10,27 @@ import warnings
 warnings.simplefilter(action='ignore', category=UserWarning)
 
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
-ARTIFACT_DIR = BASE_DIR / "0_Artifact_Testing"
+ARTIFACT_DIR = BASE_DIR / "artifact_testing"
 DATA_DIR = ARTIFACT_DIR / "data"
-DATASET_DIR = BASE_DIR / "g_Dataset" / "labeled_static_feature_RCA"
-TRAIN_DATA_PATH = DATASET_DIR / "static_features_df.csv"
+
+# The full labeled static-feature table used to train the layer RCA model is part
+# of the Deep4ge dataset, archived on Zenodo (DOI 10.5281/zenodo.20337241) rather
+# than committed to this repo. Point DEFAULT_STATIC_FEATURES_CSV at the downloaded
+# `static_features_df.csv`, or drop the file next to this script.
+TRAIN_DATA_PATH = Path(
+    os.environ.get(
+        "DEFAULT_STATIC_FEATURES_CSV",
+        ARTIFACT_DIR / "data" / "static_features_df.csv",
+    )
+)
 TEST_DATA_PATH = DATA_DIR / "static_features_df_test_file.csv"
+
+if not TRAIN_DATA_PATH.exists():
+    raise FileNotFoundError(
+        f"Training table not found at {TRAIN_DATA_PATH}. "
+        "Download static_features_df.csv from the Deep4ge dataset on Zenodo "
+        "(DOI 10.5281/zenodo.20337241) and set DEFAULT_STATIC_FEATURES_CSV to its path."
+    )
 
 df = pd.read_csv(TRAIN_DATA_PATH)
 target_column = 'Buggy'

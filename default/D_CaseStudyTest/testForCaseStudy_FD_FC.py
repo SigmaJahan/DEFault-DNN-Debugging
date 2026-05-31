@@ -6,7 +6,8 @@ from sklearn.preprocessing import StandardScaler
 from joblib import load
 import configparser
 
-MODEL_DIR = "..\\d_DEFault\\D_Test" # Change this to the directory where the models are saved
+# The trained classifiers (best_clf_*.joblib) live alongside this script.
+MODEL_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 def load_classifier(filename):

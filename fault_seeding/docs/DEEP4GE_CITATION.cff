@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use Deep4ge, please cite this dataset and repository."
+title: "Deep4ge: A Dataset for Fault Detection and Diagnosis in Deep Neural Networks"
+type: dataset
+authors:
+  - family-names: Jahan
+    given-names: Sigma
+license: "CC-BY-4.0"
+version: "v1.0.0"
+date-released: 2026-05-22
+doi: 10.5281/zenodo.20337241
+url: "https://doi.org/10.5281/zenodo.20337241"
+keywords:
+  - deep learning
+  - mutation testing
+  - dataset
+  - software testing
+  - fault diagnosis
