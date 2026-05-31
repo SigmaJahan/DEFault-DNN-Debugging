@@ -55,8 +55,8 @@ def _ensure_callback_importable():
     """Register deep4ge_framework/callback.py as the 'CustomCallback' module.
 
     All 60 seed programs do ``from CustomCallback import EnhancedLoggingCallback``.
-    This function makes our callback.py importable under that name so the
-    exec'd seed programs find the class without any filesystem hacks.
+    This function registers callback.py under that module name so the
+    executed seed programs resolve the class without modifying the filesystem.
     """
     if "CustomCallback" not in sys.modules:
         callback_path = os.path.join(os.path.dirname(__file__), "callback.py")

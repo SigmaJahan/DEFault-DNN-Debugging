@@ -163,13 +163,13 @@ def generate_user_friendly_output(df_results):
 
 
     df_results['Avg. Probability (%)'] = (df_results['Avg. Probability (%)'] * 100).round(1)
-    df_results['Bug Detected?'] = df_results['Bug Detected?'].apply(lambda x: 'Yes ✅' if x == 'Positive' else 'No ❌')
+    df_results['Bug Detected?'] = df_results['Bug Detected?'].apply(lambda x: 'Yes' if x == 'Positive' else 'No')
 
     print("\n=== Detailed Results ===")
     print(df_results.to_string(index=False))
 
     df_pivot = df_results.pivot_table(index='File Name', columns='Bug Category', values='Bug Detected?', aggfunc='first')
-    df_pivot.fillna("No ❌", inplace=True)
+    df_pivot.fillna("No", inplace=True)
 
     print("\n=== Summary ===")
     print(df_pivot.to_string())
